@@ -1,0 +1,50 @@
+import type { ReactNode } from "react";
+import { ArrowRight, Building2, Microscope, ShieldCheck, Sparkles } from "lucide-react";
+import { FadeIn, PathologyVisual } from "@/components/motion";
+import { ScrollOrchestrator } from "@/components/scroll-orchestrator";
+
+const stats = ["Delayed diagnosis", "Pathologist shortages", "Growing cancer burden", "Limited access in smaller hospitals"];
+const workflow = ["Sample Capture", "Image Digitization", "AI Enhancement", "Cancer Detection", "Clinical Review", "Diagnostic Insights"];
+const hospital = ["Workflow optimization", "Faster case prioritization", "AI-assisted review", "Scalable deployment"];
+const pathologist = ["Heatmaps", "Case prioritization", "Confidence scoring", "Report generation", "Review dashboard"];
+const future = ["Oral Cancer", "Breast Pathology", "Multi-Cancer Diagnostics"];
+
+function Nav() {
+  return <header className="fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white/70 backdrop-blur-2xl dark:border-white/10 dark:bg-black/45"><nav className="mx-auto flex h-14 max-w-7xl items-center justify-between px-5 text-sm"><a className="font-display text-lg font-semibold tracking-tight" href="#top">Neurora</a><div className="hidden gap-7 text-black/60 dark:text-white/65 md:flex"><a href="#technology">Technology</a><a href="#research">Research</a><a href="#company">Company</a><a href="#contact">Contact</a></div><a href="#contact" className="rounded-full bg-black px-4 py-2 text-white transition hover:scale-105 dark:bg-white dark:text-black">Request Demo</a></nav></header>;
+}
+
+function SectionTitle({ eyebrow, title, copy }: { eyebrow: string; title: string; copy?: string }) {
+  return <FadeIn className="mx-auto max-w-4xl text-center"><p className="mb-4 text-sm font-semibold uppercase tracking-[.28em] text-neurora-blue">{eyebrow}</p><h2 className="font-display text-4xl font-semibold tracking-[-.045em] text-balance md:text-7xl">{title}</h2>{copy && <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-black/60 dark:text-white/60">{copy}</p>}</FadeIn>;
+}
+
+function GlassCard({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return <div className={`rounded-[2rem] border border-black/10 bg-white/70 p-7 shadow-soft backdrop-blur-xl transition hover:-translate-y-1 hover:shadow-glow dark:border-white/10 dark:bg-white/[.06] ${className}`}>{children}</div>;
+}
+
+export default function Home() {
+  return <main id="top" className="overflow-hidden bg-white text-ink dark:bg-ink dark:text-white"><ScrollOrchestrator /><Nav />
+    <section data-story className="noise relative flex min-h-screen items-center px-5 pt-24"><div className="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-[.95fr_1.05fr]"><FadeIn><p className="mb-5 text-sm font-semibold uppercase tracking-[.32em] text-black/45 dark:text-white/45">Advancing Cancer Diagnostics Through AI</p><h1 className="font-display text-6xl font-semibold tracking-[-.06em] text-balance md:text-8xl">AI-Powered Cancer Diagnostics.</h1><p className="mt-7 max-w-2xl text-xl leading-9 text-black/62 dark:text-white/62">Building the next generation of digital pathology tools for faster, smarter cancer detection.</p><div className="mt-10 flex flex-col gap-4 sm:flex-row"><a className="rounded-full bg-neurora-blue px-7 py-4 font-semibold text-white shadow-glow" href="#contact">Request Demo</a><a className="rounded-full bg-black/5 px-7 py-4 font-semibold dark:bg-white/10" href="#technology">Learn More</a></div></FadeIn><FadeIn delay={.15}><div data-product-zoom><PathologyVisual hero /></div></FadeIn></div></section>
+
+    <section data-story className="px-5 py-28"><SectionTitle eyebrow="The problem" title="Millions of pathology slides. Too few specialists." copy="Cancer programs need tools that reduce friction without replacing clinical judgment." /><div className="mx-auto mt-14 grid max-w-6xl gap-5 md:grid-cols-4">{stats.map((s,i)=><FadeIn key={s} delay={i*.06}><GlassCard><div className="text-5xl font-semibold tracking-tighter">{[31,48,64,72][i]}%</div><p className="mt-5 text-black/60 dark:text-white/60">{s}</p></GlassCard></FadeIn>)}</div></section>
+
+    <section data-story id="technology" className="bg-cloud px-5 py-28 dark:bg-white/[.03]"><SectionTitle eyebrow="How Neurora works" title="A clinical workflow, redesigned for AI." /><div className="mx-auto mt-16 grid max-w-7xl gap-4 md:grid-cols-6">{workflow.map((w,i)=><FadeIn key={w} delay={i*.05}><GlassCard className="h-full"><div className="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-black text-white dark:bg-white dark:text-black">{i+1}</div><h3 className="text-xl font-semibold">{w}</h3></GlassCard></FadeIn>)}</div></section>
+
+    <section data-story className="px-5 py-28"><div className="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2"><SectionTitle eyebrow="Neurora Cervical AI" title="Cervical Cancer Detection Reimagined." copy="A research-led product experience that moves from original slide imagery to AI-enhanced views, clinical classification, and pathologist review." /><FadeIn><div className="relative"><PathologyVisual /><div className="absolute inset-y-8 left-1/2 w-1 rounded-full bg-white shadow-xl"><span className="absolute -left-5 top-1/2 h-11 w-11 rounded-full border border-white bg-black shadow-soft" /></div></div></FadeIn></div></section>
+
+    <section data-story className="bg-black px-5 py-28 text-white"><SectionTitle eyebrow="AI virtual staining" title="See Beyond Traditional Staining." copy="Neurora presents virtual staining as research and technology exploration; it does not claim medical effectiveness or regulatory approval." /><div className="mx-auto mt-16 grid max-w-6xl gap-5 md:grid-cols-4">{["Faster analysis", "Reduced workflow friction", "AI-assisted visualization", "Research-driven approach"].map((f,i)=><FadeIn key={f} delay={i*.05}><GlassCard><Sparkles className="mb-8 text-neurora-cyan" /><h3 className="text-xl font-semibold">{f}</h3></GlassCard></FadeIn>)}</div></section>
+
+    <section data-story className="px-5 py-28"><SectionTitle eyebrow="Enterprise" title="Built for hospitals. Designed for pathologists." /><div className="mx-auto mt-16 grid max-w-7xl gap-6 md:grid-cols-2"><GlassCard><Building2 className="mb-6" /><h3 className="text-3xl font-semibold">For Hospitals</h3><ul className="mt-6 space-y-4 text-black/60 dark:text-white/60">{hospital.map(x=><li key={x}>• {x}</li>)}</ul></GlassCard><GlassCard><Microscope className="mb-6" /><h3 className="text-3xl font-semibold">For Pathologists</h3><ul className="mt-6 space-y-4 text-black/60 dark:text-white/60">{pathologist.map(x=><li key={x}>• {x}</li>)}</ul></GlassCard></div></section>
+
+    <section data-story id="research" className="bg-cloud px-5 py-28 dark:bg-white/[.03]"><SectionTitle eyebrow="Research & innovation" title="A roadmap toward multi-cancer diagnostics." /><div className="mx-auto mt-16 max-w-4xl border-l border-black/10 pl-8 dark:border-white/10"><FadeIn><p className="text-neurora-blue">2026</p><h3 className="mt-2 text-4xl font-semibold">Neurora Founded</h3><p className="mt-4 text-black/60 dark:text-white/60">Cervical AI and virtual staining research form the foundation for future modules: {future.join(", ")}.</p></FadeIn></div></section>
+
+    <section data-story className="noise relative px-5 py-36"><SectionTitle eyebrow="Vision" title="Building the AI Operating System for Pathology." copy="Microscopy imagery, AI visualizations, review dashboards, and enterprise deployment converge into one elegant pathology intelligence layer." /></section>
+
+    <section data-story id="company" className="px-5 py-28"><SectionTitle eyebrow="Founders" title="Led by clinicians, researchers, and product builders." /><div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-2">{["Founder & CEO", "Co-Founder, AI Research"].map((role,i)=><GlassCard key={role}><div className="mb-6 h-48 rounded-[1.5rem] bg-gradient-to-br from-black/10 to-neurora-blue/20 dark:from-white/10" /><h3 className="text-2xl font-semibold">Founder {i+1}</h3><p className="mt-2 text-black/60 dark:text-white/60">{role} · Digital pathology and healthcare AI background.</p><button className="mt-6 rounded-full border border-black/10 px-5 py-3 dark:border-white/10">LinkedIn</button></GlassCard>)}</div></section>
+
+    <section data-story className="bg-cloud px-5 py-24 dark:bg-white/[.03]"><SectionTitle eyebrow="Partners" title="Hospitals. Research institutions. Incubators." /><div className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-4 md:grid-cols-3">{["Hospital Partner", "Research Lab", "Incubator", "Clinical Network", "University", "Diagnostics Group"].map(x=><div key={x} className="rounded-3xl border border-black/10 bg-white/60 p-8 text-center font-semibold text-black/45 dark:border-white/10 dark:bg-white/5 dark:text-white/45">{x}</div>)}</div></section>
+
+    <section data-story id="contact" className="px-5 py-32 text-center"><FadeIn><ShieldCheck className="mx-auto mb-8 h-12 w-12 text-neurora-blue" /><h2 className="mx-auto max-w-4xl font-display text-5xl font-semibold tracking-[-.05em] text-balance md:text-7xl">Join Us in Shaping the Future of Cancer Diagnostics.</h2><div className="mt-10 flex justify-center gap-4"><a className="rounded-full bg-black px-7 py-4 font-semibold text-white dark:bg-white dark:text-black" href="mailto:hello@neurora.ai">Request Demo</a><a className="rounded-full bg-black/5 px-7 py-4 font-semibold dark:bg-white/10" href="mailto:hello@neurora.ai">Contact Us <ArrowRight className="inline h-4" /></a></div></FadeIn></section>
+
+    <footer className="border-t border-black/10 px-5 py-10 text-sm text-black/55 dark:border-white/10 dark:text-white/55"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 md:flex-row"><p>© 2026 Neurora. Research technology; not a medical device claim.</p><div className="flex flex-wrap gap-5"><a href="#top">Home</a><a href="#technology">Technology</a><a href="#research">Research</a><a href="#company">Company</a><a href="#contact">Contact</a><a>Privacy</a><a>Terms</a><a>LinkedIn</a></div></div></footer>
+  </main>;
+}
